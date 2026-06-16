@@ -1,0 +1,43 @@
+.modal-content {
+    width: 100%;
+
+
+    .main {
+        font-size: 20px;
+        padding: 20px;
+
+        p {
+            text-align: center;
+        }
+
+        .btns {
+ 
+            display: flex;
+            justify-content: space-evenly;
+            width: 50%;
+            margin-left: 25%;
+            button {
+                width: 30%;
+                border-radius: 20px;
+                padding: 5px 5px;
+                font-size: 18px;
+                color: white;
+            }
+
+            .yes {
+                background-color: #0AA252;
+                border: 1px solid #0AA252;
+            }
+
+            .no {
+                background-color: crimson;
+                border: 1px solid crimson;
+            }
+        }
+
+    }
+}
+
+::ng-deep .modal-backdrop {
+    z-index: 0 !important;
+}

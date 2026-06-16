@@ -1,0 +1,148 @@
+.modal-content {
+    width: 100%;
+
+    padding-bottom: 7%;
+    padding-top: 1%;
+    padding-left: 10px;
+    padding-right: 10px;
+    // height: 90vh;
+    overflow: auto;
+
+    .head {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        .title {
+            width: 50%;
+            color: #2B5ECB;
+            font-weight: 500;
+            font-size: 20px;
+            padding-bottom: 10px;
+        }
+    }
+
+
+    .list {
+        border-radius: 10px;
+        box-shadow: 0px 0px 2px 1px #EBEBEB;
+
+        .flex-container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            .flex-item {
+                padding: 10px;
+                width: 20%;
+                box-sizing: border-box;
+            }
+
+            .head {
+                font-size: 20px;
+                font-weight: 500;
+                color: #2B5ECB;
+            }
+
+            .body {
+                font-size: 18px;
+            }
+
+            .snoH,.sno{
+                width:5% ;
+            }
+
+            .nameH,
+            .name {
+                width: 25%;
+            }
+
+            .designationH,
+            .designation {
+                width: 15%;
+            }
+
+            .collegeH,
+            .college {
+                width: 40%;
+            }
+
+            .actionH,
+            .action {
+                width: 15%;
+            }
+
+            .action{
+                button{
+                    background-color: crimson;
+                    border: 1px solid crimson;
+                    color: white;
+
+                    border-radius: 0.5rem;
+                    border: 1px solid crimson;
+                    height: 42px;
+                    padding: 0px 20px;
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .head-content {
+            border-bottom: 1px solid #EBEBEB;
+            padding: 10px 0px;
+        }
+
+        .body-content {
+            border-bottom: 1px solid #EBEBEB;
+            position: relative;
+        }
+    }
+}
+
+::ng-deep .modal-backdrop {
+    z-index: 0 !important;
+}
+
+.deletepopup {
+    width: 350px;
+    // height: 100px;
+    background-color: white;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    border-radius: 10px;
+    padding: 25px;
+    z-index: 1;
+    box-shadow: 0px 0px 6px -1px black;
+    font-size: 18px;
+
+
+    .conformation {
+        text-align: center;
+        font-size: 18px;
+
+        button {
+            border-radius: 0.5rem;
+            height: 30px;
+            padding: 0px 10px;
+            font-weight: 500;
+            color: white;
+            margin-right: 10px;
+        font-size: 18px;
+
+
+        }
+
+        .yesdelete {
+            background-color: #2B5ECE;
+            border: 1px solid #2B5ECE;
+
+        }
+
+        .canceldelete {
+            background-color: crimson;
+            border: 1px solid crimson;
+        }
+    }
+}

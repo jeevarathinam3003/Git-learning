@@ -1,0 +1,162 @@
+<div class="main">
+    <div class="content">
+
+        <section class="header">
+            <span class="title">Meeting</span>
+            <div class="bttn-box">
+                <div class="searchmember">
+                    <input class="input-search" type="text" placeholder="Search..." [(ngModel)]="keyword"
+                        (keyup.enter)="enterSearch()" (keyup)="searchMember()" />
+                    <p>( Press enter for search )</p>
+
+                </div>
+                <button class="export">
+                    <!-- (click)="export()" -->
+                    <span> Export </span>
+                </button>
+                <button class="add" (click)="onAddBtnClick()">
+                    <span>Create Meeting</span>
+                </button>
+            </div>
+        </section>
+
+        <div class="category">
+            <div class="each-categ">
+                <label class="custom-checkbox">
+                    <input id="ongoing" type="checkbox" [checked]="onGoing == true"
+                        (change)="onCheckboxChangeType1($event)">
+                    <span class="checkbox"></span>
+                    <label for="ongoing">Today's</label>
+                </label>
+            </div>
+            <div class="each-categ custom-checkbox">
+                <label class="custom-checkbox">
+                    <input id="upcomming" type="checkbox" [checked]="upComming == true"
+                        (change)="onCheckboxChangeType2($event)">
+                    <span class="checkbox"></span>
+                    <label for="upcomming">Upcoming</label>
+                </label>
+            </div>
+            <div class="each-categ custom-checkbox">
+                <label class="custom-checkbox">
+                    <input id="completed" type="checkbox" [checked]="completed == true"
+                        (change)="onCheckboxChangeType3($event)">
+                    <span class="checkbox"></span>
+                    <label for="completed">Completed</label>
+                </label>
+            </div>
+
+        </div>
+        <div class="list">
+            <div class="flex-container head-content">
+                <div class="flex-item head snoH">#</div>
+                <div class="flex-item head purposeH">Description</div>
+                <div class="flex-item head dateH">Date</div>
+                <div class="flex-item head agendaH">Agenda</div>
+                <div class="flex-item head groupsH">Groups</div>
+                <div class="flex-item head linkH">Link</div>
+                <div class="flex-item head countH">Participant count</div>
+                <div class="flex-item head viewH">View</div>
+                <div class="flex-item head actionsH">Actions</div>
+            </div>
+
+            <div *ngIf="meetingList.length > 0">
+                <div class="flex-container body-content" *ngFor="let meeting of meetingList; let i = index ">
+                    <div class="flex-item body sno">
+                        <p>{{i+ offset +1}}</p>
+                    </div>
+                    <div class="flex-item body purpose ">
+
+                        <p>{{meeting.title}}</p>
+                        <p><span><i class="fa-solid fa-location-dot" style="color: #404047;"></i></span>
+                            {{meeting.venue}}
+                        </p>
+                    </div>
+                    <div class="flex-item body date">
+                        <p>{{meeting.meeting_date}}</p>
+                        <p>{{meeting.from_time}}</p>
+                        <p>To</p>
+                        <p>{{meeting.to_time}}</p>
+                    </div>
+                    <div class="flex-item body agenda">{{meeting.meeting_content}}</div>
+                    <div class="flex-item body groups">
+                        <p *ngFor="let group of meeting.group_ids">{{group.group_name}}</p>
+                    </div>
+                    <div class="flex-item body link" (mouseenter)="meeting.isHidden = !meeting.isHidden"
+                        (mouseleave)="meeting.isHidden = !meeting.isHidden" >
+                        <i class="fa-solid fa-link" style="color: #404047;" *ngIf="meeting.meeting_link != null && meeting.meeting_link != '' "></i>
+                        
+                        <span *ngIf="(meeting.meeting_link == null) ||( meeting.meeting_link == '') ">-</span>
+
+                        <div *ngIf="meeting.isHidden  && meeting.meeting_link != null && meeting.meeting_link != '' " class="text" >
+                            <p ><i class="fa-solid fa-copy" (click)="copyText(meeting.meeting_link)"></i></p>
+                            <span id="link">{{meeting.meeting_link}}</span>
+                            
+                        </div>
+                    </div>
+                    <div class="flex-item body count">{{meeting.member_count}}</div>
+                    <div class="flex-item body view" (click)="viewMember(meeting)">
+                        <i class="fa-solid fa-eye" style="color: #404047;"></i>
+                    </div>
+                    <div class="flex-item body actions">
+                        <div class="edit-delete">
+                            <button class="action" (click)="editMeeting(meeting.meeting_id)">
+                                <i class="fa-solid fa-pen-to-square" style="color: #404047;"></i>
+                            </button>
+                            <button class="action" (click)="wantTodeleteMeeting(meeting.meeting_id)">
+                                <i class="fa-solid fa-trash-can" style="color: #404047;"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="deletepopup" *ngIf="(meeting.wantToDelete) && (meeting.wantToDelete == true)">
+                        <p>Are you sure want to delete meeting ?</p>
+                        <div class="conformation">
+                            <button class="yesdelete" (click)="deleteMeeting(meeting.meeting_id)">Yes</button>
+                            <button class="canceldelete" (click)="cancelDelete(meeting.meeting_id)">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="flex pagi-wrap" *ngIf="meetingList.length > 0">
+            <div *ngIf="totalMeetingsCount > 0">
+                <label class="label" for="search">Set Page Size:</label>
+                <select class="search select-drop" id="mysel" (change)="setPageSize($event)" [(ngModel)]="limit">
+                    <option selected value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <div *ngIf="totalMeetingsCount > 5">
+                <ngb-pagination [(page)]="page" [rotate]="true" [maxSize]="5" [pageSize]="limit"
+                    (pageChange)="pageEvent($event)" [collectionSize]="totalMeetingsCount"></ngb-pagination>
+            </div>
+            <div *ngIf="totalMeetingsCount > 5">
+                <label class="label" for="search">Go To Page:</label>
+                <input class="search" type="text" #search id="search" name="search" (keyup.enter)="goToPage($event)"
+                    autocomplete="off" Decimalnumeric numericType="number">
+                <button class="btn gobutton" type="submit" name="go" (click)="goToPage(search.value)">Go</button>
+            </div>
+        </div>
+
+        <div class="notification" *ngIf="(meetingList.length == 0 ) && !(meetingSandbox.meetingListLoading$ | async)">
+            <i class="fa-solid fa-circle-exclamation fa-2xl" style="color: #404047;"></i>
+            <p>No records found !</p>
+        </div>
+
+        <!-- LOADING DOTS... -->
+        <div class="spinner box" *ngIf="(meetingSandbox.meetingListLoading$ | async)">
+            <div class="pulse-container">
+                <div class="pulse-bubble pulse-bubble-1"></div>
+                <div class="pulse-bubble pulse-bubble-2"></div>
+                <div class="pulse-bubble pulse-bubble-3"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

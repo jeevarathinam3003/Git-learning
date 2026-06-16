@@ -1,0 +1,37 @@
+<div class="modal-content">
+
+    <div class="head">
+        <div class="title">
+            {{meeting_name}}  Attendees
+        </div>
+    
+        <div class="close">
+            <span (click)="close()">
+                <i class="fa-solid fa-x"></i>
+            </span>
+        </div>
+    </div>
+
+    
+
+    <div class="list">
+
+        <div class="flex-container head-content">
+            <div class="flex-item head snoH">#</div>
+            <div class="flex-item head nameH">Name</div>
+            <div class="flex-item head designationH">Designation</div>
+            <div class="flex-item head collegeH">Group</div>
+            <div class="flex-item head attendanceH">Attendance</div>
+        </div>
+        
+        <div class="flex-container body-content" *ngFor="let member of membersAttendance; let i = index">
+            <div class="flex-item body sno">{{i+1}}</div>
+            <div class="flex-item body name">{{member.name}}</div>
+            <div class="flex-item body designation">{{member.designation}}</div>
+            <div class="flex-item body college">{{member.college_name}}</div>
+            <div class="flex-item body attendance "  *ngIf="member.attendance == 'A'"><span class="absent">Absent</span></div>
+            <div class="flex-item body attendance " *ngIf="member.attendance == 'P'"><span class="present">Present</span></div>
+        </div>
+    </div>
+
+</div>

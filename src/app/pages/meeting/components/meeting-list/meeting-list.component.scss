@@ -1,0 +1,462 @@
+.main {
+
+    .content {
+        .header {
+            // background-color: yellow;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+
+            .title {
+                color: #2B5ECE;
+                font-size: 32px;
+                font-weight: 500;
+            }
+
+            .bttn-box {
+                // background-color: red;
+                width: 40%;
+                display: flex;
+                justify-content: end;
+
+                .searchmember {
+                    margin-left: 10px;
+
+                    input {
+                        border-radius: 25px;
+                        height: 42px;
+                        padding: 0px 20px;
+                        font-weight: 500;
+                        border: 1px solid #dddddd;
+                        font-size: 18px;
+                    }
+
+                    p {
+                        text-align: center;
+                        margin-top: 5px;
+                        color: crimson;
+                    }
+                }
+
+                .export {
+                    background-color: #0AA252;
+                    border: 1px solid #0AA252;
+                    color: white;
+                }
+
+                .add {
+                    color: white;
+                    background-color: #2B5ECE;
+                    border: 1px solid #2B5ECE;
+                }
+
+                button {
+                    margin-left: 10px;
+                    border-radius: 0.5rem;
+                    border: 1px solid #D5D4D4;
+                    height: 42px;
+                    padding: 0px 20px;
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .category {
+            display: flex;
+            margin: 20px 0px;
+
+            .each-categ {
+                width: 15%;
+            }
+        }
+
+        .list {
+            // border-radius: 10px;
+            // box-shadow: 0px 0px 2px 1px #EBEBEB;
+            // background: white;
+
+            .flex-container {
+                // border: 1px solid red;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                // border: 1px solid red;
+
+
+                .flex-item {
+                    // border-radius: 10px;
+
+                    // border-bottom: 1px solid black;
+                    padding: 10px;
+                    // width: 16%;
+                    box-sizing: border-box;
+                }
+
+                .head {
+                    font-size: 20px;
+                    font-weight: 500;
+                    color: #2B5ECB;
+                }
+
+                .body {
+                    font-size: 18px;
+                }
+            }
+
+            .head-content {
+                // border-bottom: 1px solid #EBEBEB;
+                background: white;
+                padding: 10px 0px;
+            }
+
+            .body-content {
+                margin-top: 10px;
+                // border-bottom: 1px solid #EBEBEB;
+                position: relative;
+                font-size: 18px;
+                margin-top: 5px;
+                background: white;
+            }
+
+            .snoH,
+            .sno {
+                width: 5%;
+            }
+
+            .purposeH,
+            .purpose {
+                width: 15%;
+            }
+
+            .dateH,
+            .date {
+                width: 10%;
+            }
+
+            .linkH,
+            .link {
+                // background-color: pink;
+                width: 5%;
+            }
+
+            .link {
+                // background-color: yellow;
+                height: 50%;
+
+                // position: relative;
+                .text {
+                    width: 250px;
+                    background-color: white;
+                    position: absolute;
+                    padding: 15px 20px;
+                    // right: 10px;
+                    box-shadow: 0px 0px 4px 1px;
+                    border-radius: 10px;
+                    word-wrap: break-word;
+                    z-index: 1;
+
+                    p{
+                        text-align: right;
+                    }
+                }
+            }
+
+            .agendaH,
+            .agenda {
+                width: 20%;
+            }
+            .groupsH,.groups{
+                width: 20%;
+            }
+
+            .countH,
+            .count {
+                width: 10%;
+            }
+
+            .viewH,
+            .view {
+                width: 5%;
+
+            }
+
+            .actionsH,
+            .actions {
+                width: 10%;
+
+            }
+
+            .actions {
+                .edit-delete {
+                    width: 100%;
+
+                    .action {
+                        border: none;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.deletepopup {
+    width: 350px;
+    // height: 100px;
+    background-color: white;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    border-radius: 10px;
+    padding: 25px;
+    z-index: 1;
+    box-shadow: 0px 0px 6px -1px black;
+
+    .conformation {
+        text-align: center;
+
+        button {
+            border-radius: 0.5rem;
+            height: 30px;
+            padding: 0px 10px;
+            font-weight: 500;
+            color: white;
+            margin-right: 10px;
+
+        }
+
+        .yesdelete {
+            background-color: #2B5ECE;
+            border: 1px solid #2B5ECE;
+        }
+
+        .canceldelete {
+            background-color: crimson;
+            border: 1px solid crimson;
+        }
+    }
+}
+
+.pagi-wrap {
+    justify-content: flex-end;
+
+    .go {
+        .gobutton {
+            background-color: #2B5ECE;
+            color: white;
+            height: 32px;
+            padding: 0px 10px;
+            border: 1px solid #2B5ECE;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 18px;
+
+        }
+    }
+}
+
+.label {
+    color: #404047 !important;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.search {
+    height: 32px;
+    margin-top: 21px;
+    margin-right: 5px;
+    width: 62px;
+    border: 1px solid gray;
+    text-align: center;
+    border-radius: 0.5rem;
+    color: #404047 !important;
+    font-size: 15px;
+
+}
+
+.pagi-wrap {
+    justify-content: flex-end;
+
+    .pagination {
+        li {
+            a {
+                margin-left: 5px;
+                color: #000;
+
+                &.active {
+                    background: #eb4b0c !important;
+                    color: white;
+                }
+            }
+
+            &:first-child {
+                a {
+                    background: transparent;
+                    border: 0px;
+                    color: #a2a2a2;
+                }
+            }
+
+            &:last-child {
+                a {
+                    background: transparent;
+                    border: 0px;
+                    color: #000;
+                }
+            }
+        }
+    }
+}
+
+
+::ng-deep .pagination>li>a {
+    background-color: #fff;
+    border: 1px solid gray;
+    font-size: 15px;
+    height: 32px !important;
+    color: #404047 !important;
+    font-weight: 500;
+
+}
+
+::ng-deep .pagination>.active>a {
+    font-weight: 500;
+    color: white !important;
+    background-color: #2B5ECE !important;
+
+}
+
+.gobutton {
+    background-color: #2B5ECE;
+    color: white;
+    font-weight: 500;
+    height: 32px;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: end;
+    font-size: 18px;
+
+    label {
+        margin-bottom: 8px !important;
+    }
+}
+
+.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+/* Create a custom checkbox */
+:host ::ng-deep .custom-checkbox .checkbox {
+    border-radius: 50%;
+    width: 20px !important;
+    height: 20px !important;
+    border: 2px solid #2B5ECB !important;
+    display: inline-block;
+    background-color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+    position: relative;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* When checkbox is checked */
+:host ::ng-deep .custom-checkbox input:checked+.checkbox {
+    background-color: white;
+    /* Red color for checked state */
+    border-color: #2B5ECB;
+}
+
+/* Add a checkmark using the :after pseudo-element */
+:host ::ng-deep .custom-checkbox input[type="checkbox"]:checked+.checkbox::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 6px;
+    width: 5px;
+    height: 10px;
+    border: solid #2B5ECB;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+::ng-deep .my-class .modal-dialog {
+    max-width: 80% !important;
+    width: 80% !important;
+    padding: 20px !important;
+}
+
+::ng-deep .my-class .modal-dialog {
+    max-width: 80% !important;
+    width: 80% !important;
+    top: 20% !important;
+    padding: 20px !important;
+
+}
+
+.notification {
+    margin-top: 300px;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    p {
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 20px;
+    }
+}
+
+/* PULSE BUBBLES */
+
+.pulse-container {
+    width: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.pulse-bubble {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #2B5ECE;
+}
+
+.pulse-bubble-1 {
+    animation: pulse .4s ease 0s infinite alternate;
+}
+
+.pulse-bubble-2 {
+    animation: pulse .4s ease .2s infinite alternate;
+}
+
+.pulse-bubble-3 {
+    animation: pulse .4s ease .4s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: .25;
+        transform: scale(.75);
+    }
+}
+
+.spinner {
+    margin-top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+

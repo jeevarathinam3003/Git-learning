@@ -1,0 +1,160 @@
+<div class="main">
+    <div class="content">
+
+        <section class="header">
+
+            <div class="title">
+                <span>Add claim</span>
+            </div>
+
+            <div class="bttn-box">
+                <button class="cancel" (click)="onCancelBtnClick()">
+                    <span> Cancel </span>
+                </button>
+                <button class="create" *ngIf="gotDetails == true" (click)="addClaim()">
+                    <!-- (click)="addClaim()" -->
+                    <span>Add claim</span>
+                </button>
+
+            </div>
+        </section>
+
+        <div class="main-content">
+            <div class="date-data" [formGroup]="claimfor">
+
+                <div class="date">
+
+                    <div class="date-div">
+                        <label>Date<sup>*</sup></label>
+                        <div>
+                            <mat-form-field (click)="picker1.open()" appearance="outline">
+                                <input readonly class="input-group" type="text" matInput [matDatepicker]="picker1"
+                                    autocomplete="off" formControlName="date" (dateChange)="changeDate()">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                            <span
+                                *ngIf="claimfor.controls['date'].hasError('required') && claimfor.controls['date'].touched"
+                                class="error-data">
+                                Date is required
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="meeting-div">
+                        <label>Select meeting name<sup>*</sup></label>
+                        <ng-select class="options" placeholder="Select" [items]="meetingName" bindLabel="display"
+                            formControlName="meeting_name" (change)="onChange()">
+                        </ng-select>
+                        <span
+                            *ngIf="claimfor.controls['meeting_name'].hasError('required') && claimfor.controls['meeting_name'].touched"
+                            class="error-data">
+                            Meeting name is required
+                        </span>
+                    </div>
+
+                    <div class="claim-details">
+                        <button (click)="getClaimDetails()">Get claim details</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="data" *ngIf="gotDetails == true">
+                <div class="da">
+                    <div class="Sanctioned-div">
+                        <i class="fa-solid fa-circle-check" style="color: #0AA252;"></i>
+                        <div class="Sanctioned">Sanctioned DA</div>
+                        <div class="dot">:</div>
+                    </div>
+
+                    <span>1000000</span>
+                </div>
+                <!-- <div class="ta">
+                    <div class="Sanctioned-div">
+                        <div class="Sanctioned">Sanctioned TA</div>
+                        <div class="dot">:</div>
+                    </div>
+    
+                    <span>10000</span>
+                </div> -->
+
+            </div>
+
+            <div class="editclaim" *ngIf="gotDetails == true">
+
+                <div class="claim-div">
+                    <div class="claim">
+                        <div class="claim-name">
+                            <i class="fa-solid fa-pen-to-square" style="color: #2B5ECE;"></i>
+
+                            <div class="c-name">Claim DA</div>
+                            <div class="c-dot">:</div>
+                        </div>
+
+                        <div class="c-input"><input type="text" placeholder="Enter amount" [(ngModel)]="edit_amount"
+                                (keyup)="changamount()"></div>
+                    </div>
+                    <div class="reason-uploads">
+                        <div class="uploads">
+                            <span> <i class="fa-solid fa-paperclip" style="color: #2B5ECE;"></i></span>
+                            <span style="margin-left: 10px;">Attachments</span>
+
+                            <div class="input-file flex">
+                                <h3 *ngIf="!isDefault">{{documentName}}</h3>
+                                <div class="file-upld" *ngIf="isDefault">
+                                    <input type="file" name="userDoc" (change)="uploadDocument($event)"
+                                        #filePathDocument style="display: none">
+                                    <button href="javascript: void(0)" (click)="clickDocument()">Browse</button>
+                                </div>
+                                <div class="file-upld" *ngIf="!isDefault">
+                                    <input type="file" name="userDoc" (change)="uploadDocument($event)"
+                                        #filePathDocument style="display: none">
+                                    <button href="javascript: void(0)" (click)="uploadDocumentApi()">Upload</button>
+                                </div>
+                            </div>
+
+                            <!-- <div class="upload-documents">
+                                <h4>Upload documents</h4>
+                
+                                <div class="ud-row flex" *ngFor="let list of UploadDocumentFiles">
+                                    <span *ngIf="list.isViewChange == 0">
+                                        <a target="blank"
+                                            [href]="fileUrl + '/file-report/document-download/' + list.documentName">{{list.documentDisplayName}}</a>
+                                    </span>
+                                    <span *ngIf="list.isViewChange == 1">
+                                        <a target="blank" [href]="list.documentPath">{{list.documentDisplayName}}</a>
+                                    </span>
+                                    <a href="javascript:void(0)" (click)="removeDocument(list)"><img src="assets/imgs/rubbish-bin.svg">
+                                    </a>
+                
+                                </div>
+                            </div> -->
+
+                            <!-- <input type="file" accept=".jpg, .jpeg, .png" (change)="uploadImage($event)" #filePath
+                                style="display: none">
+                            <a href="javascript: void(0)" (click)="uploadButtonClick()">
+                                <span>Browse</span>
+                            </a> -->
+
+                        </div>
+                        <div class="reason" *ngIf="get_reason == true">
+                            <label for="">Explanation<sup>*</sup></label>
+                            <textarea class="reason-input" autocomplete="nope"
+                                placeholder="Enter explanation"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>

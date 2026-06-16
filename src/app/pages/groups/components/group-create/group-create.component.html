@@ -1,0 +1,60 @@
+<div class="main">
+    <div class="content">
+
+        <section class="header">
+
+            <div class="title">
+                <span>{{ edit == false ? "Create" : "Update" }}<span> Group</span></span>
+            </div>
+
+            <div class="bttn-box">
+                <button class="cancel" (click)="onCancelBtnClick()">
+                    <span> Cancel </span>
+                </button>
+                <button class="create" (click)="createGroup()">
+                    <span>{{ edit == false ? "Create" : "Update" }}<span> Group</span></span>
+                </button>
+
+            </div>
+        </section>
+
+        <form class="form" [formGroup]="creategroup"  >
+
+            <div class="input-boxes">
+
+                <div class="inputbox groupname">
+                    <div class="flexout">
+                        <label>Group name<sup>*</sup></label>
+                        <div class="flexin">
+                            <input type="text" placeholder="Enter group name" formControlName="group_name" />
+                            <span
+                                *ngIf="creategroup.controls['group_name'].hasError('required') && creategroup.controls['group_name'].touched"
+                                class="error-data">
+                                Group name is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inputbox dailyallowance">
+                    <div class="flexout">
+                        <label>Daily allowance<sup>*</sup></label>
+                        <div class="flexin">
+                            <input type="text" onkeypress="return /[0-9]/i.test(event.key)" placeholder="Enter Daily allowance" formControlName="daily_allowance" onkeypress="return /[0-9]/i.test(event.key)" />
+                            <span
+                                *ngIf="creategroup.controls['daily_allowance'].hasError('required') && creategroup.controls['daily_allowance'].touched"
+                                class="error-data">
+                                Daily allowance is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+
+        </form>
+
+
+    </div>
+</div>

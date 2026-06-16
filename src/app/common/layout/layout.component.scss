@@ -1,0 +1,19 @@
+.wrapper {
+
+  .side-bar {
+    width: 17%;
+    display: inline-block;
+    position: fixed;
+  }
+
+  .page-wrapper {
+    position: absolute;
+    left: 17%;
+    width: 83%;
+    display: inline-block;
+    padding: 20px;
+    background: #f5f4f4;
+    min-height: 100vh;
+
+  }
+}

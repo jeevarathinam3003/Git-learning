@@ -1,0 +1,44 @@
+<div class="modal-content">
+
+    <div class="head">
+        <div class="title">
+            {{group_name}} Members
+        </div>
+
+        <div class="close">
+            <span (click)="close()">
+                <i class="fa-solid fa-x"></i>
+            </span>
+        </div>
+    </div>
+
+
+
+    <div class="list">
+
+        <div class="flex-container head-content">
+            <div class="flex-item head snoH">#</div>
+            <div class="flex-item head nameH">Name</div>
+            <div class="flex-item head designationH">Designation</div>
+            <div class="flex-item head collegeH">College</div>
+            <div class="flex-item head actionH">Action</div>
+        </div>
+
+        <div class="flex-container body-content" *ngFor="let member of membersList; let i = index">
+            <div class="flex-item body sno">{{i+1}}</div>
+            <div class="flex-item body name">{{member.name}}</div>
+            <div class="flex-item body designation">{{member.designation}}</div>
+            <div class="flex-item body college">{{member.college_name}}</div>
+            <div class="flex-item body action "><button class="remove" (click)="wantToDeleteMember(member.id)">Remove</button></div>
+
+            <div class="deletepopup" *ngIf="(member.wantToDelete) && (member.wantToDelete == true)">
+                <p>Are you sure want to remove this member ?</p>
+                <div class="conformation">
+                    <button class="yesdelete" (click)="deleteMember(member.id)">Yes</button>
+                    <button class="canceldelete" (click)="cancelDelete(member.id)">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

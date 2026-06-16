@@ -1,0 +1,94 @@
+<div class="box1">
+    <div class="box2">
+        <div class="left">
+            <div class="leftcontent">
+                <h1>Rajiv Gandhi University</h1>
+                <p>
+                    " Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Illum consequuntur iure repellendus fugiat, beatae ratione atque nam itaque nihil error hic eligendi
+                    fuga nisi veniam magnam dicta optio!
+                    Rem aperiam perspiciatis officia placeat. Cum non in,
+                    voluptatibus soluta necessitatibus aspernatur laborum iste accusantium quaerat incidunt asperiores
+                    perferendis distinctio esse ad? "
+                </p>
+            </div>
+
+        </div>
+        <div class="right">
+            <!-- <img src="../../../../assets/images/rgu_logo.jpg"/> -->
+
+            <div class="content">
+                <!-- <img class="logo" src="assets/images/rgu_Logo.png" /> -->
+                <img class="logo" src="assets/images/rgu_Logo.png" />
+
+
+                <h1>RGU Meet</h1>
+                <div *ngIf="isAllowLogin === 0">
+                    <div class="mobilenumber">
+                        <input type="text" [(ngModel)]="userMobile" id="numberInput" placeholder="Enter mobile number"
+                            [maxlength]="10" onkeypress="return /[0-9]/i.test(event.key)">
+                    </div>
+                    <p class="userMobileError">{{mobileNumberError}}</p>
+                    <div class="getotp">
+                        <button (click)="validateUser()">Validate User</button>
+                        <!-- *ngIf="!(authSandbox.validateUserLoading$)" -->
+                        <!-- <button *ngIf="(authSandbox.validateUserLoading$)" >Loading...</button> -->
+                    </div>
+                </div>
+
+
+                <div class="enter-otp-div" *ngIf="isAllowLogin === 1">
+                    
+                    <div class="enter-otp">
+                        <h6>Please enter the OTP to verify your account</h6>
+                    </div>
+
+                    <!-- <div class="">
+                    <span>One Time Password sent to {{displayName}} </span>
+                </div> -->
+
+                    <div class="userInput">
+                        <input type="text" placeholder="X" id='ist' maxlength="1"
+                            (keyup)="changeEvent($event,'sec', 1, 'previous')" onkeypress="return /[0-9]/i.test(event.key)">
+                        <input type="text" placeholder="X" id="sec" maxlength="1"
+                            (keyup)="changeEvent($event,'third', 2,'ist')" onkeypress="return /[0-9]/i.test(event.key)">
+                        <input type="text" placeholder="X" id="third" maxlength="1"
+                            (keyup)="changeEvent($event,'fourth', 3,'sec')" onkeypress="return /[0-9]/i.test(event.key)">
+                        <input type="text" placeholder="X" id="fourth" maxlength="1"
+                            (keyup)="changeEvent($event,'fifth', 4,'third')" onkeypress="return /[0-9]/i.test(event.key)">
+                        <input type="text" placeholder="X" id="fifth" maxlength="1"
+                            (keyup)="changeEvent($event,'sixth', 5,'fourth')" onkeypress="return /[0-9]/i.test(event.key)">
+                        <input type="text" placeholder="X" id="sixth" maxlength="1"
+                            (keyup)="changeEvent($event,'seventh', 6,'fifth')" onkeypress="return /[0-9]/i.test(event.key)">
+                    </div>
+
+
+                    <div class="LoadingOrNot">
+
+                        <button class="Notloagding" (click)="validateOTP()">
+                            <!-- *ngIf="!validateOtpLoading" -->
+                            <!--    *ngIf="!(authSandbox.validateOtpLoading$ | async)" class="ripple validate-btn" -->
+                            Validate OTP
+                        </button>
+                        <button class="loagding" *ngIf="validateOtpLoading">
+                            <!-- *ngIf="authSandbox.validateOtpLoading$ | async" -->
+                            Loading...
+                        </button>
+
+                    </div>
+                    <div class="bottom-options">
+                        <!-- <span *ngIf="counter >= 0">{{counter | formatTime}}</span> -->
+                        <span>
+                            <a href="javascript:Void(0)" (click)="backTologin()">Back</a>
+                            <!--  -->
+                        </span>
+                        <!-- <span (click)="resendOtp()" *ngIf="counter < 0">Resend OTP</span> -->
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

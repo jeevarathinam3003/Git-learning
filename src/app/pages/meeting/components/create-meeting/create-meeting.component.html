@@ -1,0 +1,253 @@
+<div class="main">
+  <div class="content">
+
+    <section class="header">
+
+      <div class="title">
+        <span>{{ edit == false ? "Create" : "Update" }}<span> Meeting</span></span>
+      </div>
+
+      <div class="bttn-box">
+        <button class="cancel" (click)="onCancelBtnClick()">
+          <span> Cancel </span>
+        </button>
+        <button class="create" (click)="createMeeting()">
+          <span>{{ edit == false ? "Create" : "Update" }}<span> Meeting</span></span>
+        </button>
+
+      </div>
+    </section>
+
+    <form class="form" [formGroup]="createmeeting">
+
+      <div class="input-boxes">
+
+        <div class="inputbox title">
+          <div class="flexout">
+            <label>Description<sup>*</sup></label>
+            <div class="flexin">
+              <input type="text" placeholder="Enter title" formControlName="title" />
+              <span
+                *ngIf="createmeeting.controls['title'].hasError('required') && createmeeting.controls['title'].touched"
+                class="error-data">
+                Description is required
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="inputbox date-time">
+          <div class="flexout">
+            <div class="flexin datepicker">
+              <div class="date">
+                <label>Date<sup>*</sup></label>
+                <mat-form-field (click)="picker1.open()" appearance="outline">
+                  <input readonly class="input-group" type="text" matInput [matDatepicker]="picker1" autocomplete="off"
+                    formControlName="date" [min]="minDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <span
+                  *ngIf="createmeeting.controls['date'].hasError('required') && createmeeting.controls['date'].touched"
+                  class="error-data">
+                  Date is required
+                </span>
+              </div>
+
+              <div class="time-container">
+                <div class="time">
+                  <label>From time<sup>*</sup></label>
+                  <div class="input-with-icon">
+                    <div class="input-with-icon">
+                      <input class="picker-cs" [ngxTimepicker]="timePick1" [format]=12 [readonly]="true"
+                        formControlName="from_time">
+                      <mat-icon>access_time</mat-icon>
+                      <ngx-material-timepicker #timePick1>
+                      </ngx-material-timepicker>
+                    </div>
+                    <span
+                      *ngIf="createmeeting.controls['from_time'].hasError('required') && createmeeting.controls['from_time'].touched"
+                      class="error-data">
+                      From time is required
+                    </span>
+                  </div>
+                </div>
+
+                <div class="time">
+                  <label>To time<sup>*</sup></label>
+                  <div class="input-with-icon">
+                    <div class="input-with-icon">
+                      <input class="picker-cs" [ngxTimepicker]="timePick2" [format]=12 [readonly]="true"
+                        formControlName="to_time">
+                      <mat-icon>access_time</mat-icon>
+                      <ngx-material-timepicker #timePick2>
+                      </ngx-material-timepicker>
+                    </div>
+                    <span
+                      *ngIf="createmeeting.controls['to_time'].hasError('required') && createmeeting.controls['to_time'].touched"
+                      class="error-data">
+                      To time is required
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="inputbox meetingmodemain">
+          <div class="flexout meetingmodeSUB">
+
+            <div class="modediv">
+              <div class="linkdiv">
+                <label>Meeting link<sup></sup></label>
+                <div class="flexin">
+                  <input type="text" placeholder="Enter meeting link" [(ngModel)]="meeting_link"
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <div class="inputbox geo-location-div">
+          <label>Geo Location</label>
+          <ng-select class="options" placeholder="Select" [items]="geoLocationOptions" bindLabel="display"
+            formControlName="geo_location">
+          </ng-select>
+          <!-- <span *ngIf="false" class="error-data"> -->
+          <!-- form.controls['gender'].hasError('required') && form.controls['gender'].touched -->
+          <!-- Geo Location is required. -->
+          <!-- </span> -->
+        </div>
+
+        <div class="inputbox venue">
+          <div class="flexout">
+            <label>Venue</label>
+            <div class="flexin">
+              <input type="text" placeholder="Enter venue" formControlName="venue" />
+
+            </div>
+          </div>
+        </div>
+
+        <div class="inputbox agenda">
+          <div class="flexout agendadiv">
+            <label>Agenda</label>
+            <div class="flexin">
+              <textarea class="agenda-input" autocomplete="nope" placeholder="Enter agenda" formControlName="agenda">
+                </textarea>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="inputbox groups">
+          <div class="flexout">
+            <label>Select Groups<sup>*</sup></label>
+            <div class="flexin">
+              <ngx-select-dropdown class="group-input" [config]="groupconfig" formControlName="groups"
+                [options]="grouplist" [maxSelectedItems]="2" [multiple]="true"
+                (change)="onSelectionChange($event)"></ngx-select-dropdown>
+            </div>
+            <span
+              *ngIf="createmeeting.controls['groups'].hasError('required') && createmeeting.controls['groups'].touched"
+              class="error-data">
+              Group's required
+            </span>
+
+          </div>
+        </div>
+      </div>
+
+    </form>
+    <!-- 
+    <div style="margin-top: 20px;">
+      <div> -->
+
+    <!-- <div class="selectmembers"> -->
+    <!-- <div class="label-search">
+            <div class="labeldiv">
+              <label>Select Groups<sup>*</sup></label>
+              <span *ngIf="member_empty" class="error-data">
+                {{member_empty_error}}
+              </span>
+            </div>
+          </div> -->
+    <!-- <div class="table-container" >
+            <table>
+              <thead>
+                <tr>
+                  <th >
+                    <input style="width: 20px;" type="checkbox" id="all" [checked]="allmemberSelect"
+                      (change)="selectAllMember($event)">
+                    <label  for="all">All</label>
+                  </th>
+                  <th><label for="">Name</label></th>
+                  <th><label for="">Designation</label></th>
+                  <th><label for="">College Name</label></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="tr" *ngFor="
+                  let member of tempArray;
+                  let i = index">
+                  <td>
+                    <input style="width: 20px;" type="checkbox" [checked]="member.is_select"
+                      (change)="selectOneMember($event ,member)">
+                  </td>
+                  <td>{{member.name}}</td>
+                  <td>{{member.designation}}</td>
+                  <td>{{member.college_name}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div> -->
+
+
+    <!-- <div class="table-container">
+            <div class="table">
+              <div class="thead">
+                <div class="tr">
+                  <div class="th checkH" style="width: 5%; display: flex;" >
+                    <input style="width: 20px;" type="checkbox" id="all" [checked]="allmemberSelect"
+                      (change)="selectAllMember($event)">
+                    <label  for="all" style="margin-top: 17px;">All</label>
+                  </div>
+                  <div class="th nameH"><label for="" style="margin-top: 13px;">Name</label></div>
+                  <div class="th designationH"><label for="">Designation</label></div>
+                  <div class="th collegeH"><label for="">College Name</label></div>
+                </div>
+              </div>
+              <div class="tbody">
+                <div class="tr" class="tr" *ngFor="
+                  let member of tempArray;
+                  let i = index">
+                  <div class="td check" >
+                    <input style="width: 20px;" type="checkbox" [checked]="member.is_select"
+                      (change)="selectOneMember($event ,member)">
+                  </div>
+                  <div class="td name" >{{member.name}}</div>
+                  <div class="td designation">{{member.designation}}</div>
+                  <div class="td college">{{member.college_name}}</div>
+                </div>
+              </div>
+            </div>
+
+          </div> -->
+
+    <!-- </div> -->
+    <!-- </div>
+    </div> -->
+
+
+
+  </div>
+</div>

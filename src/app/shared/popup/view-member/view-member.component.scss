@@ -1,0 +1,111 @@
+.modal-content {
+    width: 100%;
+
+    padding-bottom: 5%;
+    padding-top: 1%;
+    padding-left: 10px;
+    padding-right: 10px;
+    // height: 90vh;
+    overflow: auto;
+
+    .head {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        .title {
+            width: 50%;
+            color: #2B5ECB;
+            font-weight: 500;
+            font-size: 20px;
+            padding-bottom: 10px;
+        }
+
+        .close {
+            // width: 10%;
+            // text-align: end;
+            // padding: 20px;
+        }
+    }
+
+
+
+    .list {
+        border-radius: 10px;
+        box-shadow: 0px 0px 2px 1px #EBEBEB;
+
+        .flex-container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+
+            .flex-item {
+                padding: 10px;
+                width: 20%;
+                box-sizing: border-box;
+            }
+
+            .head {
+                font-size: 20px;
+                font-weight: 500;
+                color: #2B5ECB;
+            }
+
+            .body {
+                font-size: 18px;
+            }
+
+            .snoH,.sno{
+                width:5% ;
+            }
+
+            .nameH,
+            .name {
+                width: 25%;
+            }
+
+            .designationH,
+            .designation {
+                width: 15%;
+            }
+
+            .collegeH,
+            .college {
+                width: 40%;
+            }
+
+            .attendanceH,
+            .attendance {
+                width: 15%;
+            }
+        }
+
+        .head-content {
+            border-bottom: 1px solid #EBEBEB;
+            padding: 10px 0px;
+        }
+
+        .body-content {
+            margin-top: 10px;
+            border-bottom: 1px solid #EBEBEB;
+        }
+    }
+}
+
+::ng-deep .modal-backdrop {
+    z-index: 0 !important;
+}
+
+.present {
+    background-color: #d2ffe8;
+    ;
+    color: #0AA252;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+.absent {
+    background-color: #ffdce3;
+    color: crimson;
+    padding: 5px 15px;
+    border-radius: 10px;
+}

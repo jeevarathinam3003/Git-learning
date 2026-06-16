@@ -1,0 +1,277 @@
+<!-- <div *ngIf="usersSandbox.fetchUpdateDataLoading$ | async"> -->
+<!-- <app-page-loader></app-page-loader> -->
+<!-- </div> -->
+<main>
+    <section class="header">
+
+        <div class="title">
+            <span>{{ edit == false ? "Create" : "Update" }}<span> Member</span></span>
+        </div>
+
+        <div class="bttn-box">
+            <button class="cancel" (click)="onCancelBtnClick()">
+                <span> Cancel </span>
+            </button>
+            <button class="create" (click)="onCreateBtnClick()">
+                <span>{{ edit == false ? "Create" : "Update" }}<span> Member</span></span>
+            </button>
+
+        </div>
+    </section>
+
+    <section class="container-box customScroll">
+        <div class="upload-foto-container-box">
+            <div class="upload-foto">
+                <input type="file" name="userImg" (change)="uploadImage($event)" accept="image/*" #filePath />
+                <!--   -->
+                <!-- <img class="logo" src="assets/images/user.png" /> -->
+                <img [src]="postUrl" onError="this.src='assets/images/user.png'" />
+            </div>
+            <div class="description">
+                <p class="main-heading">Choose User Photo</p>
+                <p class="sub-heading">
+                </p>
+            </div>
+            <button class="browse" (click)="uploadButtonClick()">
+                <!-- (click)="uploadButtonClick()" -->
+                <span> Browse </span>
+            </button>
+
+            <!-- <button style="width: 15rem" class="bttn" (click)="uploadButtonClick()">
+                <span> Browse </span>
+              </button> -->
+        </div>
+        <form [formGroup]="form" (ngSubmit)="doCreateMember()">
+            <div class="input-boxes">
+                <div class="inputbox member">
+                    <label>Member Name <sup>*</sup></label>
+                    <input type="text" formControlName="member_name" placeholder="Enter Member name" />
+                    <span
+                        *ngIf="form.controls['member_name'].hasError('required') && form.controls['member_name'].touched"
+                        class="error-data">
+                        Name is required.
+                    </span>
+                </div>
+                <div class="inputbox member">
+                    <label>Designation<sup>*</sup></label>
+                    <input type="text" formControlName="designation" placeholder="Enter designation" />
+                    <span
+                        *ngIf="form.controls['designation'].hasError('required') && form.controls['designation'].touched"
+                        class="error-data">
+                        Designation is required.
+                    </span>
+                </div>
+                <div class="inputbox role">
+                    <label>Role<sup>*</sup></label>
+                    <ng-select class="options" [items]="role" bindLabel="display" placeholder="Select"
+                        formControlName="role">
+                    </ng-select>
+                    <span *ngIf="form.controls['role'].hasError('required') && form.controls['role'].touched"
+                        class="error-data">
+                        Role is required.
+                    </span>
+                </div>
+                <div class="inputbox member">
+                    <label>Mobile number<sup>*</sup></label>
+                    <input type="text" formControlName="mobile_number" placeholder="Enter mobile number" maxlength="10"
+                        onkeypress="return /[0-9]/i.test(event.key)" />
+                    <span
+                        *ngIf="form.controls['mobile_number'].hasError('required') && form.controls['mobile_number'].touched"
+                        class="error-data">
+                        Mobile number is required.
+                    </span>
+                </div>
+                <div class="inputbox member">
+                    <label>Whatsapp number</label>
+                    <input type="text" formControlName="whatsapp_number" placeholder="Enter whatsapp number"
+                        maxlength="10" onkeypress="return /[0-9]/i.test(event.key)" />
+                    <span
+                        *ngIf="form.controls['whatsapp_number'].hasError('required') && form.controls['whatsapp_number'].touched"
+                        class="error-data">
+                        Whatsapp number is required.
+                    </span>
+                </div>
+                <div class="inputbox member">
+                    <label>E-mail ID<sup>*</sup></label>
+                    <input type="text" formControlName="email_id" placeholder="Enter e-mail id" />
+                    <span *ngIf="form.controls['email_id'].hasError('required') && form.controls['email_id'].touched"
+                        class="error-data">
+                        E-mail is required.
+                    </span>
+                </div>
+                
+
+                <div class="inputbox member">
+                    <label>Gender<sup>*</sup></label>
+                    <ng-select class="options" [items]="gender" bindLabel="display" placeholder="Select"
+                        formControlName="gender">
+                    </ng-select>
+                    <span *ngIf="form.controls['gender'].hasError('required') && form.controls['gender'].touched"
+                        class="error-data">
+                        Gender is required.
+                    </span>
+                </div>
+                <div class="inputbox member">
+                    <label>Date of birth</label>
+
+                    <mat-form-field (click)="picker1.open()" appearance="outline">
+                        <input readonly class="input-group" type="text" matInput [matDatepicker]="picker1"
+                            autocomplete="off" formControlName="dob">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+
+                    <span *ngIf="form.controls['dob'].hasError('required') && form.controls['dob'].touched"
+                        class="error-data">
+                        Date of birth is required.
+                    </span>
+
+                </div>
+
+            </div>
+
+            
+            <div class="input-boxes">
+                <div class="inputbox origin">
+                    <label>Origin<sup>*</sup></label>
+                    <ng-select class="options" [items]="origin" bindLabel="display" placeholder="Select" (change)="selectorigin()"
+                        formControlName="origin">
+                    </ng-select>
+                    <span *ngIf="form.controls['origin'].hasError('required') && form.controls['origin'].touched"
+                        class="error-data">
+                        Origin is required.
+                    </span>
+                </div>
+
+
+                <div class="inputbox groups">
+                    <label>Group's applicable <sup>*</sup></label>
+                    <div class="category">
+                        <div class="group">
+                            <ngx-select-dropdown class="group-input" [config]="groupconfig" [options]="grouplist" [maxSelectedItems]="2" formControlName="groups"
+                                [multiple]="true"></ngx-select-dropdown>
+                            <!-- (change)="changeStandard($event)" -->
+                        </div>
+                    </div>
+                    <span *ngIf="form.controls['groups'].hasError('required') && form.controls['groups'].touched"
+                        class="error-data">
+                        Group's required.
+                    </span>
+                </div>
+
+                <div class="inputbox member">
+                    <label>Can create meeting ? <sup>*</sup></label>
+                    <div class="category">
+                        <label class="custom-checkbox">
+                            <input id="yes" value="yes" type="checkbox" (change)="onCheckboxChange()"
+                                [checked]="allow_to_create == true">
+                            <span class="checkbox"></span>
+                            <label for="yes">Yes</label>
+                        </label>
+                        <label class="custom-checkbox no">
+                            <input id="no" value="no" type="checkbox" (change)="onCheckboxChange()"
+                                [checked]="allow_to_create == false">
+                            <span class="checkbox"></span>
+                            <label for="no">No</label>
+                        </label>
+                    </div>
+             
+                </div>
+
+                <div class="inputbox other-origin" *ngIf="getOtherOrigin">
+                    <label>Enter origin<sup>*</sup></label>
+                    <input type="text" [(ngModel)]="other_origin" placeholder="Enter origin" (keyup)="originTyping($event)" [ngModelOptions]="{standalone: true}"/>
+                    <span class="error-data">
+                        {{other_origin_error}}
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="input-boxes">
+
+                <div class="inputbox member">
+                    <label>Bank name<sup>*</sup></label>
+                    <input type="text" formControlName="bank_name" placeholder="Enter bank name" />
+                    <span *ngIf="form.controls['bank_name'].hasError('required') && form.controls['bank_name'].touched"
+                        class="error-data">
+                        Bank name is required.
+                    </span>
+                </div>
+
+                <div class="inputbox member">
+                    <label>Branch<sup>*</sup></label>
+                    <input type="text" formControlName="branch_name" placeholder="Enter branch name" />
+                    <span
+                        *ngIf="form.controls['branch_name'].hasError('required') && form.controls['branch_name'].touched"
+                        class="error-data">
+                        Branch is required.
+                    </span>
+                </div>
+
+                <div class="inputbox member">
+                    <label>IFSC Code<sup>*</sup></label>
+                    <input type="text" formControlName="ifsc_code" placeholder="Enter IFSC code" />
+                    <span *ngIf="form.controls['ifsc_code'].hasError('required') && form.controls['ifsc_code'].touched"
+                        class="error-data">
+                        IFSC Code is required.
+                    </span>
+                </div>
+
+
+                <div class="inputbox member">
+                    <label>Bank account number<sup>*</sup></label>
+                    <input type="text" onkeypress="return /[0-9]/i.test(event.key)" formControlName="bank_acc_no"
+                        placeholder="Enter bank account number" />
+                    <span
+                        *ngIf="form.controls['bank_acc_no'].hasError('required') && form.controls['bank_acc_no'].touched"
+                        class="error-data">
+                        Bank account number is required.
+                    </span>
+                </div>
+                <div class="inputbox member">
+                    <label>PAN number<sup>*</sup></label>
+                    <input type="text" onkeypress="return /[0-9]/i.test(event.key)" formControlName="pan_no"
+                        placeholder="Enter PAN number" />
+                    <span *ngIf="form.controls['pan_no'].hasError('required') && form.controls['pan_no'].touched"
+                        class="error-data">
+                        PAN number is required.
+                    </span>
+                </div>
+            </div>
+
+            <div class="input-boxes">
+
+                <div class="inputbox address">
+                    <label>Address</label>
+                    <textarea class="address-input" formControlName="address" autocomplete="nope"
+                        placeholder="Enter address"></textarea>
+                </div>
+                <div class="inputbox member">
+                    <label>City</label>
+                    <input type="text" formControlName="city" placeholder="Enter City" />
+                </div>
+
+                <div class="inputbox member">
+                    <label>District</label>
+                    <input type="text" formControlName="district" placeholder="Enter District" />
+                </div>
+                
+                <div class="inputbox member">
+                    <label>Pin code</label>
+                    <input type="text" onkeypress="return /[0-9]/i.test(event.key)" formControlName="pin_code"
+                        placeholder="Enter pin code" />
+                </div>
+                <div class="inputbox member">
+                    <label>State</label>
+                    <input type="text" formControlName="state" placeholder="Enter State" />
+                </div>
+
+            </div>
+
+            
+
+        </form>
+    </section>
+
+</main>

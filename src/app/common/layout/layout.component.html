@@ -1,0 +1,27 @@
+<!-- <app-common-header></app-common-header>
+<app-sidebar></app-sidebar>
+    <router-outlet></router-outlet>
+<app-footer></app-footer> -->
+
+<!-- <div class="wrapper" id="wrapper"> -->
+<!-- <app-sidebars></app-sidebars> -->
+<!-- <app-headerbar class="common-header"></app-headerbar> -->
+<!-- <div class="page-wrapper"> -->
+<!-- <app-breadcrumbs></app-breadcrumbs> -->
+<!-- <router-outlet></router-outlet> -->
+<!-- </div> -->
+<!-- <app-footerbar class="footer"></app-footerbar> -->
+<!-- </div> -->
+
+
+<div class="wrapper" id="wrapper">
+  <app-sidebar class="side-bar"></app-sidebar>
+
+  <div class="page-wrapper">
+    <!-- <app-headerbar *ngIf="showHeaderAndBreadcrumbs"></app-headerbar>
+    <app-breadcrumbs *ngIf="showHeaderAndBreadcrumbs"></app-breadcrumbs> -->
+    <router-outlet />
+    <!-- <h1>Content</h1> -->
+  </div>
+  <!-- <app-footerbar *ngIf="showHeaderAndBreadcrumbs"></app-footerbar> -->
+</div>

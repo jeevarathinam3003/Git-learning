@@ -1,0 +1,109 @@
+
+
+<header class="flex header-content" *ngIf="loginType == 0">
+  <span class="show-tool-tip" *ngIf="DisableSidebar == 1">Please renew now and continue our services</span>
+  <div class="hdr-lft flex" [ngClass]="(DisableSidebar == 1) ? 'disableElement1': ''">
+      <h4 style="text-transform: uppercase; margin: 0px;">Welcome : {{(commonSandBox.userDetail$ | async)?.firstName}}</h4>
+      <p style="margin: 0px;"> {{academicYearLabel}} : {{(commonSandBox.academicYear$ | async)?.academicYear}}</p>
+      <span class="changeYearBtn" (click)="changeAcademicYear()">Change</span>
+      <!-- <span class="changeYearBtn" *ngIf="btn == 1"  (click)="starttour()">Take a Tour</span> -->
+  </div>
+  <div class="flex alert-profile">
+      <div class="alert" [ngClass]="(DisableSidebar == 1) ? 'disableElement1': ''">
+          <a (click)="webNotification()" style="cursor: pointer;">
+              <img style="width: 35px;" src="assets/imgs/n4.png">
+              <!-- <fa-icon [icon]="faBell"></fa-icon> -->
+
+              <span class="flex">{{notificationCount}}</span>
+          </a>
+          <!-- Here it is  -->
+      </div>
+      <div class="profile">
+        <div [ngClass]="{'dropdown': true, 'open': isExpanded}">
+            <button type="button" id="dropdownMenuButton" aria-haspopup="true" (click)="toggleDropdown()" [attr.aria-expanded]="isExpanded">
+                <img src="assets/imgs/menu-button.png">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <p>Logged in as {{(commonSandBox.userDetail$ | async)?.firstName}}</p>
+                <a class="dropdown-item" (click)="toggleDropdown()" [ngClass]="{'disableElement': DisableSidebar == 1}" href="javascript:void(0)" [routerLink]="['/school-profile']">School
+                    Profile</a>
+                <a class="dropdown-item" (click)="toggleDropdown()" [ngClass]="{'disableElement': DisableSidebar == 1}" href="javascript:void(0)" [routerLink]="['/change-password']">Change
+                    Password</a>
+                <a class="dropdown-item" (click)="toggleDropdown()" [ngClass]="{'disableElement': DisableSidebar == 1}" href="javascript:void(0)" (click)="academicYear()">Academic Year
+                    Settings</a>
+                <a class="dropdown-item" (click)="toggleDropdown()" [ngClass]="{'disableElement': DisableSidebar == 1}" href="javascript:void(0)" [routerLink]="['/feedback']"> Feedback </a>
+                <a class="dropdown-item" (click)="toggleDropdown()" [ngClass]="{'disableElement': DisableSidebar == 1}" href="javascript:void(0)" [routerLink]="['/wishlist']"> WishList </a>
+                <a class="dropdown-item" (click)="toggleDropdown()" [ngClass]="{'disableElement': DisableSidebar == 1}" href="javascript:void(0)" [routerLink]="['/mybillings']"> My Billings </a>
+                <a class="dropdown-item" href="javascript:void(0)" (click)="doLogout()">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+  </div>
+</header>
+
+<header class="flex header-content" *ngIf="loginType == 1">
+    <div class="hdr-lft flex">
+        <h4 style="text-transform: uppercase;">Welcome : {{groupHeadDetails.staffName}}
+            ({{groupHeadDetails.primaryMobile}})</h4>
+        <p hidden>Current Academic Year : {{groupHeadDetails.current_year_name}}</p>
+        <span class="changeYearBtn" (click)="changeAcademicYear()" hidden>Change</span>
+    </div>
+    <div class="flex alert-profile">
+        <div class="profile">
+            <div class="dropdown">
+                <button class="" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <img src="assets/imgs/menu-button.png">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <p>Logged in as {{groupHeadDetails.staffName}}</p>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="doLogout()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- NotificationDiv Starts -->
+<div style="display: none;" class="modal fade popup-modal" id="chk" tabindex="-1" role="dialog" aria-hidden="true"
+    aria-labelledby="dropdownMenuButton1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+        <div class="modal-body">
+            <div class="dropdown-menu_">
+                <div *ngFor="let notification of notificationList">
+
+                    <hr style="color:lightgray">
+                    <div class="col-md-11"></div>
+                    <div class="col-md-1" *ngIf="notification.isviewed">
+                        <img style="max-width: 150%;" src="../../../../assets/imgs/mail-read.png" alt="read">
+                    </div>
+                    <div class="col-md-1" *ngIf="!notification.isviewed">
+                        <img style="max-width: 150%;" src="../../../../assets/imgs/mail-unread.png" alt="unread">
+                    </div>
+                    <div class="noti-div" (click)="click(notification.idnotification,notification.redirect_to)">
+                        <div class="col-md-2">
+                            <div class="vertical_align">
+                                <div style="display: table-cell; vertical-align: middle;">
+                                    <div>
+                                        <img src="../../../../assets/imgs/{{notification.icon_name}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <h4>{{notification.title}}</h4>
+                            <p>{{notification.description}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="notificationList.length == 0" class="norec">
+                    No Record Found.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- NotificationDiv Ends -->

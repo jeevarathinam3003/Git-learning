@@ -1,0 +1,214 @@
+<div class="main">
+    <div class="content">
+        <!-- <span class="title">Claims</span> -->
+
+        <section class="header">
+            <span class="title">Claims</span>
+            <div class="bttn-box">
+                <div class="searchmember">
+                    <input class="input-search" type="text" placeholder="Search..." />
+                    <!-- [(ngModel)]="keyword" -->
+                    <!-- (change)="onSearch()" -->
+                </div>
+                <button class="export">
+                    <!-- (click)="export()" -->
+                    <span> Export </span>
+                </button>
+
+                <button class="add" (click)="onAddBtnClick()">
+                    <span>Add Claim</span>
+                </button>
+            </div>
+        </section>
+
+        <div class="inputbox meeting-name-div">
+            <label>Select meeting</label>
+            <ng-select class="options" placeholder="Select" [items]="meetings" bindLabel="display"
+                (change)="selectMeeting($event)" [(ngModel)]="meeting_name"></ng-select>
+            <!-- formControlName="geo_location" -->
+            <!-- <span *ngIf="false" class="error-data"> -->
+            <!-- form.controls['gender'].hasError('required') && form.controls['gender'].touched -->
+            <!-- Geo Location is required. -->
+            <!-- </span> -->
+        </div>
+
+        <div class="top" *ngIf="meeting_name != null">
+            <div class="category">
+
+                <div class="each-categ" *ngFor="let op of optoins ; let i = index ">
+                    <label class="custom-checkbox">
+                        <input id="{{op.id}}" value="{{op.id}}" type="checkbox" [checked]="op.is_select == true"
+                            (change)="onCheckboxChange($event)">
+                        <span class="checkbox"></span>
+                        <label for="{{op.id}}">{{op.display}}</label>
+                    </label>
+                </div>
+
+
+            </div>
+            <div class="move-all">
+                <button>
+                    Move all claims to finance
+                </button>
+            </div>
+        </div>
+
+
+
+
+        <div class="list">
+            <div class="flex-container head-content">
+                <div class="flex-item head snoH">#</div>
+                <div class="flex-item head descriptionH">Description</div>
+                <div class="flex-item head claimbyH">Claim by</div>
+                <div class="flex-item head SanctionedH">Sanctioned</div>
+                <div class="flex-item head requestH">Request</div>
+                <div class="flex-item head actionH">Action</div>
+                <div class="flex-item head statusH">Status</div>
+
+            </div>
+
+            <div class="flex-container body-content" *ngFor="let claim of claim_list; let i = index ">
+                <div class="flex-item body sno ">
+                    <p>{{i+ offset +1}}</p>
+                </div>
+                <div class="flex-item body description ">
+                    <p>{{claim.meeting_name}}</p>
+                    <p>
+                        <span>{{claim.meeting_date}}</span>
+                    </p>
+                </div>
+                <div class="flex-item body claimby">
+                    <p>{{claim.name}}</p>
+                    <!-- <p>{{claim.groupname}}</p> -->
+                </div>
+                <div class="flex-item body Sanctioned">
+                    <div class="div-one">
+                        <div class="c-name">
+                            <p>DA</p>
+                        </div>
+                        <div class="amt">
+                            <p>{{claim.sanctioned_daily_allowance}}</p>
+                        </div>
+                        <!-- <tr style="border: 1px solid; width: 100%; display: flex; justify-content: space-between;">
+                            <td style="border: 1px solid; width: 25%; padding: 10px;">DA</td>
+                            <td style="border: 1px solid; width: 75%; text-align: right;padding: 10px;">1472583690</td>
+                        </tr> -->
+
+                    </div>
+                    <div class="div-one">
+                        <div class="c-name">
+                            <p>TA</p>
+                        </div>
+                        <div class="amt">
+                            <p>{{claim.sanctioned_travel_allowance}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-item body request">
+                    <div class="div-two">
+                        <div class="c-amt">
+                            <p>{{claim.claim_daily_allowance}}</p>
+                        </div>
+                        <div class="rate">
+                            <p *ngIf="claim.claim_daily_allowance > claim.sanctioned_daily_allowance"><i
+                                    class="fa-solid fa-play fa-rotate-270" style="color: crimson;"></i>
+                            </p>
+                            <p *ngIf=" claim.sanctioned_daily_allowance > claim.claim_daily_allowance"><i
+                                    class="fa-solid fa-play fa-rotate-90" style="color: #0AA252;"></i>
+                            </p>
+                        </div>
+
+
+                    </div>
+                    <div class="div-two">
+                        <div class="c-amt">
+                            <p>{{claim.claim_travel_allowance}}</p>
+                        </div>
+                        <div class="rate">
+                            <p *ngIf="claim.claim_travel_allowance > claim.sanctioned_travel_allowance"><i
+                                    class="fa-solid fa-play fa-rotate-270" style="color: crimson;"></i>
+                            </p>
+                            <p *ngIf="claim.sanctioned_travel_allowance >  claim.claim_travel_allowance"><i
+                                    class="fa-solid fa-play fa-rotate-90" style="color: #0AA252;"></i>
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="flex-item body action">
+                    <span>Move to finance</span>
+                    <!-- <span class="one" >Approved</span>
+                    <span class="two" >Rejected</span> -->
+                </div>
+
+
+                <div class="flex-item body status">
+                    <span class="zero">Pending</span>
+                    <!-- <span class="one" >Approved</span>
+                    <span class="two" >Rejected</span> -->
+                </div>
+
+                <div class="reason-attachments">
+                    <!-- *ngIf="(claim.da_explaination != null) || (claim.ta_explaination) || (claim.attachments != null) " -->
+
+                    <div class="attachments">
+                        <!-- *ngIf="(claim.attachments != null)" -->
+                        <span class="attachmentsH">Attachments</span>
+                        <p>Attachment 1</p>
+                    </div>
+                    <div class="reason" *ngIf=" (claim.da_explaination != null) || (claim.ta_explaination != null)  ">
+                        <span class="reasonH">Reason for claim</span>
+                        <p *ngIf="(claim.da_explaination != null)">
+                            {{claim.da_explaination}}
+                        </p>
+                        <p *ngIf="(claim.ta_explaination != null)">
+                            {{claim.ta_explaination}}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="notification" *ngIf="(claim_list) && (claim_list.length == 0) && !(claimSandbox.claimListLoading$ | async)">
+                <i class="fa-solid fa-circle-exclamation fa-2xl" style="color: #404047;"></i>
+                <p>No records found !</p>
+            </div>
+        </div>
+
+        <div class="flex pagi-wrap">
+            <div *ngIf="totalclaimsCount > 0">
+                <label class="label" for="search">Set Page Size:</label>
+                <select class="search select-drop" id="mysel" (change)="setPageSize($event)" [(ngModel)]="limit">
+                    <option selected value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <div *ngIf="totalclaimsCount > 5">
+                <ngb-pagination [(page)]="page" [rotate]="true" [maxSize]="5" [pageSize]="limit"
+                    (pageChange)="pageEvent($event)" [collectionSize]="totalclaimsCount"></ngb-pagination>
+            </div>
+            <div *ngIf="totalclaimsCount > 5">
+                <label class="label" for="search">Go To Page:</label>
+                <input class="search" type="text" #search id="search" name="search" (keyup.enter)="goToPage($event)"
+                    autocomplete="off" Decimalnumeric numericType="number">
+                <button class="btn gobutton" type="submit" name="go" (click)="goToPage(search.value)">Go</button>
+            </div>
+        </div>
+
+        <!-- LOADING DOTS... -->
+        <div class="spinner box" *ngIf="(claimSandbox.claimListLoading$ | async)">
+            <div class="pulse-container">
+                <div class="pulse-bubble pulse-bubble-1"></div>
+                <div class="pulse-bubble pulse-bubble-2"></div>
+                <div class="pulse-bubble pulse-bubble-3"></div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

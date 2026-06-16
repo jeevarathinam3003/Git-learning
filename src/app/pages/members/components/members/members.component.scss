@@ -1,0 +1,373 @@
+main {
+  width: 100%;
+
+  .header {
+    // background-color: yellow;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      color: #2B5ECE;
+      font-size: 32px;
+      font-weight: 500;
+    }
+
+    .bttn-box {
+      // background-color: red;
+      width: 40%;
+      display: flex;
+      justify-content: end;
+
+      .searchmember {
+        margin-left: 10px;
+
+        input {
+          border-radius: 25px;
+          height: 42px;
+          padding: 0px 20px;
+          font-weight: 500;
+          border: 1px solid #dddddd;
+          font-size: 18px;
+        }
+        p{
+          text-align: center;
+          margin-top: 5px;
+          color: crimson;
+        }
+      }
+
+      .export {
+        background-color: #0AA252;
+        border: 1px solid #0AA252;
+        color: white;
+      }
+
+      .add {
+        color: white;
+        background-color: #2B5ECE;
+        border: 1px solid #2B5ECE;
+      }
+
+      button {
+        margin-left: 10px;
+        border-radius: 0.5rem;
+        border: 1px solid #D5D4D4;
+        height: 42px;
+        padding: 0px 20px;
+        font-weight: 500;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .container-box {
+    // border: 2px solid red;
+
+    // background-color: white;
+    // border-radius: 15px;
+
+    // height: 90vh;
+    margin-top: 20px;
+
+    
+
+    .table {
+
+
+      .thead {
+
+        .tr {
+          height: 50px;
+          vertical-align: middle !important;
+          font-size: 20px;
+
+          .th {
+            color: #2B5ECE;
+            font-weight: 500;
+
+          }
+        }
+      }
+
+      .tbody {
+        // border: 2px solid blue;
+
+
+
+        .tr {
+          height: 50px;
+          // border: 2px solid green;
+          vertical-align: middle !important;
+          font-size: 18px;
+          position: relative;
+
+          .td {
+            color: #404047;
+
+          }
+
+
+          .deletepopup {
+            width: 350px;
+            // height: 100px;
+            background-color: white;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            border-radius: 10px;
+            padding: 25px;
+            z-index: 1;
+            box-shadow: 0px 0px 6px -1px black;
+
+            .conformation {
+              text-align: center;
+
+              button {
+                border-radius: 0.5rem;
+                height: 30px;
+                padding: 0px 10px;
+                font-weight: 500;
+                color: white;
+                margin-right: 10px;
+
+              }
+
+              .yesdelete {
+                background-color: #2B5ECE;
+                border: 1px solid #2B5ECE;
+              }
+
+              .canceldelete {
+                background-color: crimson;
+                border: 1px solid crimson;
+              }
+            }
+
+
+
+          }
+
+
+          .actions {
+            border: none;
+            background-color: transparent;
+          }
+
+        }
+
+      }
+    }
+
+  }
+
+}
+
+.gobutton {
+  background-color: #2B5ECE;
+  color: white;
+  font-weight: 500;
+  height: 32px;
+}
+
+::ng-deep td {
+  vertical-align: middle !important;
+}
+
+
+.pagi-wrap {
+  justify-content: flex-end;
+
+  .go {
+    .gobutton {
+      background-color: #2B5ECE;
+      color: white;
+      height: 32px;
+      padding: 0px 10px;
+      border: 1px solid #2B5ECE;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      font-size: 18px;
+
+    }
+  }
+}
+
+.label {
+  color: #404047 !important;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.search {
+  height: 32px;
+  margin-top: 21px;
+  margin-right: 5px;
+  width: 62px;
+  border: 1px solid gray;
+  text-align: center;
+  border-radius: 0.5rem;
+  color: #404047 !important;
+  font-size: 15px;
+
+}
+
+::ng-deep .pagination>li>a {
+  background-color: #fff;
+  border: 1px solid gray;
+  font-size: 15px;
+  height: 32px !important;
+  color: #404047 !important;
+  font-weight: 500;
+
+}
+
+::ng-deep .pagination>.active>a {
+  font-weight: 500;
+  color: white !important;
+  background-color: #2B5ECE !important;
+
+
+}
+
+
+.pagi-wrap {
+  justify-content: flex-end;
+  z-index: 0 !important;
+  position: relative;
+
+  .pagination {
+    li {
+      a {
+        margin-left: 5px;
+        color: #000;
+
+        &.active {
+          background: #eb4b0c !important;
+          color: white;
+        }
+      }
+
+      &:first-child {
+        a {
+          background: transparent;
+          border: 0px;
+          color: #a2a2a2;
+        }
+      }
+
+      &:last-child {
+        a {
+          background: transparent;
+          border: 0px;
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+.notification {
+  margin-top: 300px;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  p {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 20px;
+  }
+}
+
+
+
+.superAdmin {
+  color: red !important;
+  background-color: #ffd8d8;
+  padding: 5px 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.subAdmin {
+  color: #663399;
+  background-color: #E9E6FD;
+  padding: 5px 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.vicechancellor {
+  color: orange !important;
+  background-color: #fff7e8;
+  padding: 5px 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.staff {
+  color: #008148;
+  background-color: #E4F9EB;
+
+
+  padding: 5px 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* PULSE BUBBLES */
+
+.pulse-container {
+  width: 70px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.pulse-bubble {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #2B5ECE;
+}
+
+.pulse-bubble-1 {
+  animation: pulse .4s ease 0s infinite alternate;
+}
+
+.pulse-bubble-2 {
+  animation: pulse .4s ease .2s infinite alternate;
+}
+
+.pulse-bubble-3 {
+  animation: pulse .4s ease .4s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: .25;
+    transform: scale(.75);
+  }
+}
+
+.spinner {
+  margin-top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+tr{
+  border-bottom-width: 5px;
+  border-color: #f5f4f4;
+}

@@ -1,0 +1,46 @@
+<div class="side-bar">
+    <div class="user">
+
+        <div class="userprofile">
+
+
+            <!-- <div class="photo"> -->
+            <!-- <i class="fa-solid fa-user-tie fa-2xl" ></i> -->
+
+
+            <!-- </div> -->
+            <!-- <i class="fa-solid fa-circle-user fa-2xl" style="color: black;"></i>ghj -->
+            <img src="assets/images/rgu_Logo.png" onError="this.src='assets/images/user.png'" />
+
+
+            <div class="logout">
+                <i class="fa-solid fa-right-from-bracket fa-xl" style="color: black;" (click)="logout()"></i>
+                <!-- <i class="fa-solid fa-right-from-bracket "></i> -->
+            </div>
+            <!-- <div class="usrename">
+                <p>Jeeva</p>
+            </div> -->
+        </div>
+    </div>
+    <div class="side-menu">
+        <a class="menu" *ngFor="let menu of mainmenu" [routerLink]="menu.path" [ngClass]="activeMenu == menu.path ? 'act-route' : 'not-active'">
+            <div class="icon">
+                <i class="{{menu.icon}}" [ngClass]="activeMenu == menu.path ? 'act-route' : 'not-active'" ></i>
+            </div>
+
+            <span [ngClass]="activeMenu == menu.path ? 'act-route' : 'not-active'">{{menu.title}}</span>
+        </a>
+        <!-- *ngIf="!sidebarnavItem.extralink" -->
+        <!-- [routerLink]="sidebarnavItem.path !== '' ? [sidebarnavItem.path] : null" -->
+        <!-- (click)="addExpandClass(sidebarnavItem)" -->
+    </div>
+
+    <div class="settings">
+        <a class="settingmenu" [routerLink]="settings">
+            <div class="icon">
+                <i class="fa-solid fa-gear" [ngClass]="activeMenu == settingsURL ? 'act-route' : 'not-active'" ></i>
+            </div>
+            <span [ngClass]="activeMenu == settingsURL ? 'act-route' : 'not-active'">Settings</span>
+        </a>
+    </div>
+</div>

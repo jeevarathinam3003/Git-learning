@@ -1,0 +1,228 @@
+.dropdown {
+    button {
+        background: none;
+        border: none;
+        padding: 0;
+    }
+    .dropdown-menu {
+        width: 223px;
+        border-radius: 2px;
+        box-shadow: 0 8px 17px 0 rgba(19, 18, 18, 0.09);
+        background: white;
+        padding: 20px;
+        left: -182px;
+        top: 50px;
+        p {
+            font-size: 13px;
+            font-weight: normal;
+            color: #46489e;
+            margin-bottom: 20px;
+        }
+        a {
+            font-size: 13px;
+            font-weight: normal;
+            color: #919191;
+            width: 100%;
+            margin: 0 0 11px;
+            display: block;
+        }
+    }
+}
+span#pointer {
+    border: solid 21px transparent;
+    border-bottom-color: rgb(242, 233, 233);
+    position: absolute;
+    margin: 0;
+    left: -10px;
+    top: 4px;
+    background-color: transparent;
+    right: auto;
+    width: 42px;
+    border-radius: 0px;
+}
+
+.alert {
+    button {
+        background: none;
+        border: none;
+        padding: 0;
+    }
+    .dropdown-menu {
+        // width: 400px;
+        border-radius: 5px;
+        box-shadow: 0 8px 17px 0 rgba(19, 18, 18, 0.09);
+        background: #ffffff;
+        padding: 20px 0px;
+        top: 63px;
+        right: 3px;
+        border: 1px solid darkgray;
+        left: auto !important;
+        min-height: 500px;
+        max-height: 550px;
+        overflow-y: scroll;
+        width: calc(100% - 470px);
+        p {
+            font-size: 13px;
+            font-weight: normal;
+            // color: #46489e;
+            // margin-bottom: 20px;
+        }
+        a {
+            font-size: 13px;
+            font-weight: normal;
+            color: #919191;
+            width: 100%;
+            margin: 0 0 11px;
+            display: block;
+        }
+    }
+}
+
+.cursrorNotAllow{
+
+    cursor: not-allowed;
+}
+
+.changeYearBtn {
+    background: #f9f9f9;
+    border-radius: 9px;
+    font-size: 13px;
+    padding: 2px 12px;
+    color: #ff5715;
+    font-weight: 500;
+    margin-left: 2%;
+    cursor: pointer;
+}
+
+.noti-div {
+    // margin-bottom: 10px;
+    cursor: pointer;
+    min-height: 85px;
+    padding: 10px 0px 10px 0px;
+    // height: 70px;
+    // border-bottom: 1px solid lightgray;
+    .col-md-10 {
+        margin-top: 10px;
+        h4 {
+            margin: 0px 0px 5px 0px;
+            font-size: 16px;
+            font-weight: 650;
+        }
+        p {
+            overflow-wrap: anywhere;
+            font-size: 12px;
+        }
+    }
+    .col-md-2 {
+        text-align: center;
+        .vertical_align {
+            display: table;
+            height: auto;
+            overflow: hidden;
+            min-height: 65px;
+            text-align: center;
+            width: 100%;
+        }
+    }
+}
+
+hr {
+    margin: 1px 0px 0px 0px;
+}
+
+
+.modal-content {
+    border-radius: 0;
+    .modal-header {
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 0px;
+        padding: 26px 30px 10px;
+        .modal-title {
+            font-size: 21px;
+            font-weight: 500;
+            color: #46489e;
+            width: calc(100% - 50px);
+        }
+        .close {
+            width: 50px;
+            font-size: 33px;
+            opacity: 0.4;
+        }
+    }
+}
+
+.modal.fade .modal-dialog {
+    width: 33%;
+    height: 7;
+    top: 3%;
+    left: 35%;
+}
+ 
+.modal-open .modal {
+    opacity: 1;
+    background: rgb(0, 0, 0) !important;
+}
+
+.dropdown-menu_{
+    display: block;
+    background-color: white;
+    min-height: 430px;
+    overflow-y: scroll;
+    max-height: 450px;
+    font-size: small;
+}
+
+
+hr{
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+// img{
+//     max-width: 70%;
+// }
+
+.norec{
+    text-align: center;
+    margin-top: 40%;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+// for expired institutes login
+.disableElement{
+    pointer-events: none;
+    opacity: 0.4;
+}
+.disableElement1{
+    pointer-events: none;
+    opacity: 0.8;
+}
+/////////////
+.show-tool-tip {
+    border-bottom: 1px dashed;
+    text-decoration: none
+}
+
+.show-tool-tip {
+    display: none
+}
+
+.header-content:hover .show-tool-tip {
+
+    border: #eb4b0c 2px solid;
+    padding: 15px 20px 15px 20px;
+    display: block;
+    z-index: 1;
+    left: 0px;
+    margin:-20px 648px;
+    width: 35%;
+    position: absolute;
+    font-weight: 500;
+    top: 100px;
+    text-decoration: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #eb4b0c;
+}
